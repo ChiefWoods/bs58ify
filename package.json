@@ -1,6 +1,6 @@
 {
   "name": "bs58ify",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A CLI for converting between Base58 strings and JSON byte arrays.",
   "repository": {
     "type": "git",
