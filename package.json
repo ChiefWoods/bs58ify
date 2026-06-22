@@ -2,6 +2,14 @@
   "name": "bs58ify",
   "version": "0.1.0",
   "description": "A CLI for converting between Base58 strings and JSON byte arrays.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChiefWoods/bs58ify.git"
+  },
+  "homepage": "https://github.com/ChiefWoods/bs58ify#readme",
+  "bugs": {
+    "url": "https://github.com/ChiefWoods/bs58ify/issues"
+  },
   "type": "module",
   "bin": {
     "bs58ify": "dist/cli.js"
