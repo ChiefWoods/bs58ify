@@ -24,6 +24,26 @@ test("rejects malformed command input", async () => {
   ).rejects.toThrow();
 });
 
+test("reports successful encode output", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "bs58ify-"));
+  const output = join(directory, "encoded.txt");
+  await Bun.$`bun run build`.quiet();
+
+  const result = await Bun.$`node dist/cli.js encode '[1,2,3,4]' ${output}`.quiet();
+
+  expect(result.stdout.toString()).toBe(`Encoded Base58 value written to ${output}\n`);
+});
+
+test("reports successful decode output", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "bs58ify-"));
+  const output = join(directory, "decoded.json");
+  await Bun.$`bun run build`.quiet();
+
+  const result = await Bun.$`node dist/cli.js decode 2VfUX ${output}`.quiet();
+
+  expect(result.stdout.toString()).toBe(`Decoded JSON byte array written to ${output}\n`);
+});
+
 test("builds a CLI with a Node shebang", async () => {
   const packageJson = await Bun.file("package.json").json();
   expect(packageJson.scripts.build).toBe("rolldown src/cli.ts --config rolldown.config.ts");

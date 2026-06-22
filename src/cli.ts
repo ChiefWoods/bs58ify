@@ -21,6 +21,7 @@ export function createProgram(): Command {
         .argument("<output>", "file to write the Base58 result to")
         .action(async (input: string, outputPath: string) => {
           await writeFile(outputPath, encodeByteArray(input));
+          console.log(`Encoded Base58 value written to ${outputPath}`);
         }),
     )
     .addCommand(
@@ -30,6 +31,7 @@ export function createProgram(): Command {
         .argument("<output>", "file to write the JSON result to")
         .action(async (input: string, outputPath: string) => {
           await writeFile(outputPath, decodeBase58(input));
+          console.log(`Decoded JSON byte array written to ${outputPath}`);
         }),
     );
 }
