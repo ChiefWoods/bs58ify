@@ -1,11 +1,11 @@
-import { defineConfig } from 'rolldown';
+import { defineConfig } from "rolldown";
 
 export default defineConfig({
-  input: 'src/cli.ts',
-  platform: 'node',
+  input: "src/cli.ts",
+  platform: "node",
   output: {
-    file: 'dist/cli.js',
-    format: 'esm',
-    banner: '#!/usr/bin/env node',
+    file: "dist/cli.js",
+    format: "esm",
+    banner: "#!/usr/bin/env node",
   },
 });

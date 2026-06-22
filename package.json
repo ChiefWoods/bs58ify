@@ -9,11 +9,20 @@
   "scripts": {
     "build": "rolldown src/cli.ts --config rolldown.config.ts",
     "test": "bun test",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt --check",
+    "fmt:fix": "oxfmt --write",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@types/bun": "latest",
     "bs58": "^6.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
+    "oxfmt": "^0.55.0",
+    "oxlint": "^1.70.0",
     "rolldown": "^1.1.2"
   },
   "peerDependencies": {
