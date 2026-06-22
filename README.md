@@ -1,31 +1,33 @@
-# bs58-decoder
+# bs58ify
 
-Simple base58-to-Uint8Array decoder
-
-## Prerequisites
-
-Update your Bun toolkit
-
-```bash
-bun update
-```
+A command-line utility for converting between Base58 strings and JSON byte arrays.
 
 ## Setup
 
-1. Clone the repository
-
-```bash
-git clone https://github.com/ChiefWoods/bs58-decoder.git
+```sh
+bun install
+bun run build
 ```
 
-2. Install all dependencies
+Run the built CLI locally with `node dist/cli.js`, or install the published package to
+use the `bs58ify` command directly:
 
-```bash
-bun i
+```sh
+bun add -g bs58ify
 ```
 
-## How-To-Use
+## Usage
 
-```bash
-bun uint8arr.ts <BASE58_PRIVATE_KEY> <JSON_OUTPUT_FILEPATH>
+Encode a JSON byte array as Base58:
+
+```sh
+bs58ify encode '[1,2,3,4]' encoded.txt
 ```
+
+Decode Base58 as a JSON byte array:
+
+```sh
+bs58ify decode 2VfUX decoded.json
+```
+
+Both commands require an output filepath and write the converted value to that file.

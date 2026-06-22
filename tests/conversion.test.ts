@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test';
-import { decodeBase58, encodeByteArray } from './conversion';
+import { decodeBase58, encodeByteArray } from '../src/conversion';
 
 test('encodes a JSON byte array as Base58', () => {
   expect(encodeByteArray('[1,2,3,4]')).toBe('2VfUX');

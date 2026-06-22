@@ -1,13 +1,32 @@
 {
-  "name": "bs58-decoder",
-  "module": "index.ts",
+  "name": "bs58ify",
+  "version": "0.1.0",
+  "description": "A CLI for converting between Base58 strings and JSON byte arrays.",
   "type": "module",
-  "private": true,
+  "bin": {
+    "bs58ify": "dist/cli.js"
+  },
+  "scripts": {
+    "build": "rolldown src/cli.ts --config rolldown.config.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit"
+  },
   "devDependencies": {
     "@types/bun": "latest",
-    "bs58": "^6.0.0"
+    "bs58": "^6.0.0",
+    "rolldown": "^1.1.2"
   },
   "peerDependencies": {
     "typescript": "^5"
-  }
+  },
+  "dependencies": {
+    "commander": "^15.0.0"
+  },
+  "keywords": [
+    "bs58",
+    "base58",
+    "cli",
+    "command-line",
+    "utility"
+  ]
 }

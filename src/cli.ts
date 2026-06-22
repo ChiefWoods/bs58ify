@@ -1,18 +1,22 @@
-#!/usr/bin/env node
 import { Command } from 'commander';
 import { writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { decodeBase58, encodeByteArray } from './conversion';
 
 export function createProgram(): Command {
-  return new Command()
+  const program = new Command()
     .name('bs58ify')
-    .description('Encode and decode Base58 byte arrays.')
+    .description('Encode and decode Base58 byte arrays.');
+
+  return program
+    .action(() => {
+      program.outputHelp();
+    })
     .addCommand(
       new Command('encode')
         .description('Encode a JSON byte array as Base58.')
-        .argument('<uint8array-json>', 'JSON array of bytes')
-        .argument('<output-filepath>', 'file to write the Base58 result to')
+        .argument('<uint8array>', 'JSON array of bytes')
+        .argument('<output>', 'file to write the Base58 result to')
         .action(async (input: string, outputPath: string) => {
           await writeFile(outputPath, encodeByteArray(input));
         }),
@@ -20,8 +24,8 @@ export function createProgram(): Command {
     .addCommand(
       new Command('decode')
         .description('Decode Base58 as a JSON byte array.')
-        .argument('<base58-private-key>', 'Base58-encoded value')
-        .argument('<output-filepath>', 'file to write the JSON result to')
+        .argument('<base58>', 'Base58-encoded value')
+        .argument('<output>', 'file to write the JSON result to')
         .action(async (input: string, outputPath: string) => {
           await writeFile(outputPath, decodeBase58(input));
         }),
