@@ -1,3 +1,4 @@
+import { realpathSync } from "node:fs";
 import { writeFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
@@ -36,7 +37,7 @@ export function createProgram(): Command {
     );
 }
 
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
+if (process.argv[1] && realpathSync(process.argv[1]) === fileURLToPath(import.meta.url)) {
   createProgram()
     .parseAsync()
     .catch((error: unknown) => {

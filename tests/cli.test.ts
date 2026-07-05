@@ -1,5 +1,5 @@
 import { expect, test } from "bun:test";
-import { mkdtemp, readFile } from "node:fs/promises";
+import { mkdtemp, readFile, symlink } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
@@ -61,4 +61,16 @@ test("builds a CLI with a Node shebang", async () => {
   const noArguments = await Bun.$`node dist/cli.js`.quiet().nothrow();
   expect(noArguments.exitCode).toBe(0);
   expect(noArguments.stdout.toString()).toContain("Usage: bs58ify");
+});
+
+test("runs when invoked through a package manager bin symlink", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "bs58ify-"));
+  const bin = join(directory, "bs58ify");
+  await Bun.$`bun run build`.quiet();
+  await symlink(join(process.cwd(), "dist/cli.js"), bin);
+
+  const help = await Bun.$`node ${bin} --help`.quiet();
+
+  expect(help.stdout.toString()).toContain("Usage: bs58ify");
+  expect(help.stdout.toString()).toContain("decode");
 });
