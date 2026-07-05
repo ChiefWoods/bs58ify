@@ -14,6 +14,10 @@
   "bin": {
     "bs58ify": "dist/cli.js"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "rolldown src/cli.ts --config rolldown.config.ts",
     "test": "bun test",
