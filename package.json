@@ -24,7 +24,6 @@
     "fmt:fix": "oxfmt --write",
     "check": "bun run typecheck && bun run lint && bun run fmt && bun test",
     "prepublishOnly": "bun run check && bun run build",
-    "publish": "bun publish --registry https://registry.npmjs.org/",
     "prepare": "husky"
   },
   "devDependencies": {
@@ -48,5 +47,8 @@
     "cli",
     "command-line",
     "utility"
-  ]
+  ],
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  }
 }
